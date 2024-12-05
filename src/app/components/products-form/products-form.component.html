@@ -1,0 +1,127 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-header">
+      <h5 class="card-title">
+        Form {{ product.id > 0 ? "Update" : "Create" }} Product
+      </h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit(productForm)" #productForm="ngForm">
+        <div>
+          <input
+            placeholder="Name"
+            name="name"
+            [(ngModel)]="product.name"
+            class="form-control my-2"
+            required
+            #name="ngModel"
+          />
+
+          @if (name.invalid && (name.dirty || name.touched)) {
+          @if(name.errors!['required']){
+          <div class="text-danger">Name is required</div>
+          } }
+        </div>
+
+        <div>
+          <select
+            name="category"
+            [(ngModel)]="product.category.name"
+            class="form-control my-2"
+            required
+            #category="ngModel"
+          >
+            <option
+              *ngFor="let category of categories"
+              [value]="category.name"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <input
+            placeholder="Description"
+            name="description"
+            [(ngModel)]="product.description"
+            class="form-control my-2"
+            required
+            #description="ngModel"
+          />
+
+          @if (description.invalid && (description.dirty ||
+          description.touched)) { @if(description.errors!['required']){
+          <div class="text-danger">Description is required</div>
+          } }
+        </div>
+
+        <div>
+          <input
+            placeholder="Stock"
+            name="stock"
+            [(ngModel)]="product.stock"
+            class="form-control my-2"
+            required
+            #stock="ngModel"
+          />
+
+          @if (stock.invalid && (stock.dirty || stock.touched)) {
+          @if(stock.errors!['required']){
+          <div class="text-danger">Stock is required</div>
+          } }
+        </div>
+
+        <div>
+          <input
+            placeholder="Price"
+            name="price"
+            [(ngModel)]="product.price"
+            class="form-control my-2"
+            required
+            #price="ngModel"
+          />
+
+          @if (price.invalid && (price.dirty || price.touched)) {
+          @if(price.errors!['required']){
+          <div class="text-danger">Price is required</div>
+          } }
+        </div>
+
+        <div>
+          <input
+            placeholder="Active"
+            name="active"
+            [(ngModel)]="product.active"
+            class="form-control my-2"
+            required
+            #active="ngModel"
+          />
+
+          @if (active.invalid && (active.dirty || active.touched)) {
+          @if(active.errors!['required']){
+          <div class="text-danger">Active is required</div>
+          } }
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="btn btn-primary m-2"
+            [disabled]="productForm.invalid"
+          >
+            {{ product.id > 0 ? "Update" : "Create" }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary my-2"
+            (click)="onClear(productForm)"
+          >
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

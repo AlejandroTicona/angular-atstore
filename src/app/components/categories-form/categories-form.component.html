@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-header">
+      <h5 class="card-title">
+        Form {{ category.id > 0 ? "Update" : "Create" }} Category
+      </h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit(categoryForm)" #categoryForm="ngForm">
+        <div>
+          <input
+            placeholder="Name"
+            name="name"
+            [(ngModel)]="category.name"
+            class="form-control my-2"
+            required
+            #name="ngModel"
+          />
+
+          @if (name.invalid && (name.dirty || name.touched)) {
+          @if(name.errors!['required']){
+          <div class="text-danger">Name is required</div>
+          } }
+        </div>
+        <div>
+          <input
+            placeholder="Description"
+            name="description"
+            [(ngModel)]="category.description"
+            required
+            class="form-control my-2"
+            #description="ngModel"
+          />
+
+          @if (description.invalid && (description.dirty ||
+          description.touched)) { @if(description.errors!['required']){
+          <div class="text-danger">Description is required</div>
+          } }
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="btn btn-primary m-2"
+            [disabled]="categoryForm.invalid"
+          >
+            {{ category.id > 0 ? "Update" : "Create" }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary my-2"
+            (click)="onClear(categoryForm)"
+          >
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

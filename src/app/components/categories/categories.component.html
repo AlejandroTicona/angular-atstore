@@ -1,1 +1,56 @@
-<p>categories works!</p>
+<div class="container">
+  <button class="btn btn-info btn-lg" [routerLink]="['/categories/create']">
+    New Category
+  </button>
+</div>
+<br />
+
+<div class="card">
+  <div class="card-content">
+    <div class="card-header">
+      <h5 class="card-title">Categories</h5>
+    </div>
+    <div class="card-body">
+      @if(categories.length > 0){
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Delete</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(category of categories; track $index){
+          <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="onRemoveCategory(category.id)"
+              >
+                Delete
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning btn-sm"
+                [routerLink]="['/categories/edit', category.id]"
+              >
+                Modify
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      }@else{
+      <div class="alert alert-warning">No existen categorias</div>
+      }
+    </div>
+  </div>
+</div>

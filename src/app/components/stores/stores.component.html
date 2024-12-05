@@ -1,1 +1,59 @@
-<p>stores works!</p>
+<div class="container">
+  <button class="btn btn-info btn-lg" [routerLink]="['/stores/create']">
+    New Store
+  </button>
+</div>
+<br>
+<div class="card">
+  <div class="card-content">
+    <div class="card-header">
+      <h5 class="card-title">Stores</h5>
+    </div>
+    <div class="card-body">
+      @if(stores.length > 0){
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Openning hour</th>
+            <th>Eliminar</th>
+            <th>Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(store of stores; track $index){
+          <tr>
+            <td>{{ store.id }}</td>
+            <td>{{ store.name }}</td>
+            <td>{{ store.address }}</td>
+            <td>{{ store.city }}</td>
+            <td>{{ store.openingHours }}</td>
+            <td>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="onRemoveStore(store.id)"
+              >
+                Delete
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-warning btn-sm"
+                [routerLink]="['/stores/edit', store.id]"
+              >
+                Modify
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      }@else{
+      <div class="alert alert-warning">No existen tiendas</div>
+      }
+    </div>
+  </div>
+</div>

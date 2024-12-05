@@ -1,0 +1,93 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-header">
+      <h5 class="card-title">
+        Form {{ store.id > 0 ? "Update" : "Create" }} Store
+      </h5>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit(storeForm)" #storeForm="ngForm">
+        <div>
+          <input
+            placeholder="Name"
+            name="name"
+            [(ngModel)]="store.name"
+            class="form-control my-2"
+            required
+            #name="ngModel"
+          />
+
+          @if (name.invalid && (name.dirty || name.touched)) {
+          @if(name.errors!['required']){
+          <div class="text-danger">Name is required</div>
+          } }
+        </div>
+        <div>
+          <input
+            placeholder="Address"
+            name="address"
+            [(ngModel)]="store.address"
+            required
+            class="form-control my-2"
+            #address="ngModel"
+          />
+
+          @if (address.invalid && (address.dirty || address.touched)) {
+          @if(address.errors!['required']){
+          <div class="text-danger">Address is required</div>
+          } }
+        </div>
+
+        <div>
+          <input
+            placeholder="City"
+            name="city"
+            [(ngModel)]="store.city"
+            required
+            class="form-control my-2"
+            #city="ngModel"
+          />
+
+          @if (city.invalid && (city.dirty || city.touched)) {
+          @if(city.errors!['required']){
+          <div class="text-danger">City is required</div>
+          } }
+        </div>
+
+        <div>
+          <input
+            placeholder="OpeningHours"
+            name="openingHours"
+            [(ngModel)]="store.openingHours"
+            required
+            class="form-control my-2"
+            #openingHours="ngModel"
+          />
+
+          @if (openingHours.invalid && (openingHours.dirty ||
+          openingHours.touched)) { @if(openingHours.errors!['required']){
+          <div class="text-danger">OpeningHours is required</div>
+          } }
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="btn btn-primary m-2"
+            [disabled]="storeForm.invalid"
+          >
+            {{ store.id > 0 ? "Update" : "Create" }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary my-2"
+            (click)="onClear(storeForm)"
+          >
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
